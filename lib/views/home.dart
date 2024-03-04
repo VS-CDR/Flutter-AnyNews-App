@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
 
           /// Categories
-          Container(
+          SizedBox(
             height: 64,
             child: ListView.builder(
                 itemCount: categories.length,
@@ -78,6 +78,7 @@ class _HomeState extends State<Home> {
             child: ListView.builder(
                 itemCount: articles.length,
                 shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
                 itemBuilder: (context, index){
                   return BlogTile(
                     imgUrl: articles[index].urlToImage,
@@ -95,7 +96,7 @@ class _HomeState extends State<Home> {
 class CategoryTile extends StatelessWidget {
   final String? imgUrl, categoryName;
 
-  CategoryTile({super.key, this.imgUrl, this.categoryName});
+  const CategoryTile({super.key, this.imgUrl, this.categoryName});
 
   @override
   Widget build(BuildContext context) {
@@ -136,16 +137,27 @@ class CategoryTile extends StatelessWidget {
 class BlogTile extends StatelessWidget {
   final String? imgUrl, title, desc;
 
-  BlogTile({super.key, required this.imgUrl, required this.title, required this.desc});
+  const BlogTile({super.key, required this.imgUrl, required this.title, required this.desc});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 16),
       child: Column(
         children: <Widget>[
-          Image.network(imgUrl!),
-          Text(title!),
-          Text(desc!),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+              child: Image.network(imgUrl!),
+          ),
+          Text(title!, style: const TextStyle(
+            fontSize: 18,
+            color: Colors.black87,
+            fontWeight: FontWeight.w500,
+          ),),
+          const SizedBox(height: 8,),
+          Text(desc!, style: const TextStyle(
+            color: Colors.black54
+          ),),
         ],
       ),
     );
