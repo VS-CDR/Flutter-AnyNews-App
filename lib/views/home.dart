@@ -98,7 +98,7 @@ class CategoryTile extends StatelessWidget {
 class BlogTile extends StatelessWidget {
   final String imgUrl, title, desc;
 
-  BlogTile({required this.imgUrl, required this.title, required this.desc});
+  BlogTile({super.key, required this.imgUrl, required this.title, required this.desc});
 
   @override
   Widget build(BuildContext context) {
