@@ -1,5 +1,9 @@
 import 'package:any_news/helper/data.dart';
+
 import 'package:any_news/models/category_model.dart';
+import '../helper/news.dart';
+import '../models/article_model.dart';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -11,32 +15,51 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = List<CategoryModel>.empty(growable: true);
+  List<ArticleModel> articles = List<ArticleModel>.empty(growable: true);
+
+  bool _loading = true;
 
   @override
   void initState() {
     super.initState();
     categories = getCategories();
+    getNews();
+  }
+
+  getNews() async{
+    News newsTable = News();
+    await newsTable.getNews();
+
+    articles = newsTable.news;
+    setState(() {
+      _loading = false;
+    });
   }
 
   @override
-  Widget build (BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("Any"),
-            Text("News", style: TextStyle(color: Colors.greenAccent),)
-          ],
-        ),
-        centerTitle: true,
-        elevation: 0.0,
-      ),
-      body: Column(
+  Widget build (BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text("Any"),
+          Text("News", style: TextStyle(color: Colors.greenAccent),)
+        ],
+      ),
+      centerTitle: true,
+    ),
+    body: _loading
+        ?
+    const Center(child: CircularProgressIndicator(),)
+        :
+    SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: <Widget>[
+
+          /// Categories
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 70,
+            height: 64,
             child: ListView.builder(
                 itemCount: categories.length,
                 shrinkWrap: true,
@@ -47,11 +70,26 @@ class _HomeState extends State<Home> {
                     categoryName: categories[index].categoryName,
                   );
                 }),
-          )
+          ),
+
+          /// Blogs
+          Container(
+            padding: const EdgeInsets.only(top: 16),
+            child: ListView.builder(
+                itemCount: articles.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index){
+                  return BlogTile(
+                    imgUrl: articles[index].urlToImage,
+                    title: articles[index].title,
+                    desc: articles[index].description
+                  );
+                }),
+          ),
         ],
       ),
-    );
-  }
+    ),
+  );
 }
 
 class CategoryTile extends StatelessWidget {
@@ -70,14 +108,14 @@ class CategoryTile extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-                child: Image.asset(imgUrl!, width: 120, height: 60, fit: BoxFit.cover,),
+              borderRadius: BorderRadius.circular(8),
+                child: Image.asset(imgUrl!, width: 116, height: 64, fit: BoxFit.cover,),
             ),
             Container(
               alignment: Alignment.center,
-              width: 120, height: 60,
+              width: 116, height: 64,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(8),
                 color: Colors.black26,
               ),
               child: Text(categoryName!,
@@ -96,7 +134,7 @@ class CategoryTile extends StatelessWidget {
 }
 
 class BlogTile extends StatelessWidget {
-  final String imgUrl, title, desc;
+  final String? imgUrl, title, desc;
 
   BlogTile({super.key, required this.imgUrl, required this.title, required this.desc});
 
@@ -105,9 +143,9 @@ class BlogTile extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Image.network(imgUrl),
-          Text(title),
-          Text(desc),
+          Image.network(imgUrl!),
+          Text(title!),
+          Text(desc!),
         ],
       ),
     );
