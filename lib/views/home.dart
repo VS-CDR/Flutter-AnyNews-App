@@ -1,6 +1,7 @@
 import 'package:any_news/helper/data.dart';
 
 import 'package:any_news/models/category_model.dart';
+import 'package:any_news/views/article_view.dart';
 import '../helper/news.dart';
 import '../models/article_model.dart';
 
@@ -83,7 +84,8 @@ class _HomeState extends State<Home> {
                   return BlogTile(
                     imgUrl: articles[index].urlToImage,
                     title: articles[index].title,
-                    desc: articles[index].description
+                    desc: articles[index].description,
+                    url: articles[index].url,
                   );
                 }),
           ),
@@ -135,30 +137,39 @@ class CategoryTile extends StatelessWidget {
 }
 
 class BlogTile extends StatelessWidget {
-  final String? imgUrl, title, desc;
+  final String? imgUrl, title, desc, url;
 
-  const BlogTile({super.key, required this.imgUrl, required this.title, required this.desc});
+  const BlogTile({super.key, required this.imgUrl, required this.title, required this.desc, required this.url});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Column(
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-              child: Image.network(imgUrl!),
-          ),
-          Text(title!, style: const TextStyle(
-            fontSize: 18,
-            color: Colors.black87,
-            fontWeight: FontWeight.w500,
-          ),),
-          const SizedBox(height: 8,),
-          Text(desc!, style: const TextStyle(
-            color: Colors.black54
-          ),),
-        ],
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => ArticleView(
+                blogUrl: url!,
+            )
+        ));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        child: Column(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+                child: Image.network(imgUrl!),
+            ),
+            Text(title!, style: const TextStyle(
+              fontSize: 18,
+              color: Colors.black87,
+              fontWeight: FontWeight.w500,
+            ),),
+            const SizedBox(height: 8,),
+            Text(desc!, style: const TextStyle(
+              color: Colors.black54
+            ),),
+          ],
+        ),
       ),
     );
   }
