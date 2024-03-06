@@ -11,12 +11,30 @@ class ArticleView extends StatefulWidget {
 }
 
 class _ArticleViewState extends State<ArticleView> {
+  int loadingPercentage = 0;
   late final WebViewController controller;
 
   @override
   void initState() {
     super.initState();
     controller = WebViewController()
+      ..setNavigationDelegate(NavigationDelegate(
+        onPageStarted: (url) {
+          setState(() {
+            loadingPercentage = 0;
+          });
+        },
+        onProgress: (progress) {
+          setState(() {
+            loadingPercentage = progress;
+          });
+        },
+        onPageFinished: (url) {
+          setState(() {
+            loadingPercentage = 100;
+          });
+        },
+      ))
       ..loadRequest(
         Uri.parse(widget.blogUrl),
       );
@@ -35,8 +53,16 @@ class _ArticleViewState extends State<ArticleView> {
         ),
         centerTitle: true,
       ),
-      body: WebViewWidget(
-        controller: controller,
+      body: Stack(
+        children: [
+          WebViewWidget(
+            controller: controller,
+          ),
+          if (loadingPercentage < 100)
+            LinearProgressIndicator(
+              value: loadingPercentage / 100.0,
+            ),
+        ],
       ),
     );
   }
