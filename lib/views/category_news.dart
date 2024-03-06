@@ -4,7 +4,7 @@ class CategoryNews extends StatefulWidget {
   const CategoryNews({super.key});
 
   @override
-  _CategoryNewsState createState() => _CategoryNewsState();
+  State<CategoryNews> createState() => _CategoryNewsState();
 }
 
 class _CategoryNewsState extends State<CategoryNews> {
