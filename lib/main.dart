@@ -11,10 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
     title: 'Flutter HW',
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-      useMaterial3: true,
-    ),
+    theme: ThemeData.light(),
+    darkTheme: ThemeData.dark(),
     home: const Home(),
   );
 }
