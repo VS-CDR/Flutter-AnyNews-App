@@ -45,7 +45,6 @@ class _ArticleViewState extends State<ArticleView> {
     return Scaffold(
       appBar: AppBar(
         title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text("Any"),
             Text("News", style: TextStyle(color: Colors.greenAccent),)

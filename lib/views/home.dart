@@ -41,7 +41,6 @@ class _HomeState extends State<Home> {
   Widget build (BuildContext context) => Scaffold(
     appBar: AppBar(
       title: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text("Any"),
           Text("News", style: TextStyle(color: Colors.greenAccent),)
