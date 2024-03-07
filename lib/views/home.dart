@@ -47,7 +47,6 @@ class _HomeState extends State<Home> {
           Text("News", style: TextStyle(color: Colors.greenAccent),)
         ],
       ),
-      centerTitle: true,
     ),
     body: _loading
         ?

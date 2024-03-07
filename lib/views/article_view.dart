@@ -51,7 +51,6 @@ class _ArticleViewState extends State<ArticleView> {
             Text("News", style: TextStyle(color: Colors.greenAccent),)
           ],
         ),
-        centerTitle: true,
       ),
       body: Stack(
         children: [
