@@ -63,12 +63,11 @@ class _HomeState extends State<Home> {
                 itemCount: categories.length,
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return CategoryTile(
+                itemBuilder: (context, index) => CategoryTile(
                     imgUrl: categories[index].imgUrl,
                     categoryName: categories[index].categoryName,
-                  );
-                }),
+                )
+            ),
           ),
 
           /// Blogs
@@ -78,14 +77,13 @@ class _HomeState extends State<Home> {
                 itemCount: articles.length,
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
-                itemBuilder: (context, index){
-                  return BlogTile(
+                itemBuilder: (context, index) => BlogTile(
                     imgUrl: articles[index].urlToImage,
                     title: articles[index].title,
                     desc: articles[index].description,
                     url: articles[index].url,
-                  );
-                }),
+                )
+            ),
           ),
         ],
       ),
@@ -120,11 +118,12 @@ class CategoryTile extends StatelessWidget {
                 color: Colors.black26,
               ),
               child: Text(categoryName!,
-                style: const TextStyle(
+                style:
+                  const TextStyle(
                     color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
               ),
             )
           ],
@@ -147,7 +146,8 @@ class BlogTile extends StatelessWidget {
             builder: (context) => ArticleView(
                 blogUrl: url!,
             )
-        ));
+          )
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
@@ -157,15 +157,21 @@ class BlogTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
                 child: Image.network(imgUrl!),
             ),
-            Text(title!, style: const TextStyle(
-              fontSize: 18,
-              color: Colors.black87,
-              fontWeight: FontWeight.w500,
-            ),),
+            Text(
+              title!,
+              style: const TextStyle(
+                fontSize: 18,
+                color: Colors.black87,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             const SizedBox(height: 8,),
-            Text(desc!, style: const TextStyle(
-              color: Colors.black54
-            ),),
+            Text(
+              desc!,
+              style: const TextStyle(
+                  color: Colors.black54
+              ),
+            ),
           ],
         ),
       ),
