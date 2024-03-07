@@ -15,8 +15,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<CategoryModel> categories = List<CategoryModel>.empty(growable: true);
-  List<ArticleModel> articles = List<ArticleModel>.empty(growable: true);
+  late final List<CategoryModel> categories;
+  late final List<ArticleModel> articles;
 
   bool _loading = true;
 
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
     getNews();
   }
 
-  getNews() async{
+  getNews() async {
     News newsTable = News();
     await newsTable.getNews();
 

@@ -1,6 +1,18 @@
+// import 'dart:convert';
 import '../models/category_model.dart';
 
 List<CategoryModel> getCategories() {
+//   const jsonArray = '''
+//   [{"categoryName": "Economics", "imgUrl": "assets/news_categories/ibrahim-boran-_aUwE2DnIPg-unsplash.jpg"},
+//    {"categoryName": "Politics", "imgUrl": "assets/news_categories/marco-oriolesi-wqLGlhjr6Og-unsplash.jpg"},
+//    {"categoryName": "Sports", "imgUrl": "assets/news_categories/mario-klassen-70YxSTWa2Zw-unsplash.jpg"},
+//    {"categoryName": "Science", "imgUrl": "assets/news_categories/ousa-chea-gKUC4TMhOiY-unsplash.jpg"}]
+// ''';
+//
+//   final List<dynamic> dynamicList = jsonDecode(jsonArray);
+//   final List<Map<String, dynamic>> categories =
+//   List.from(dynamicList.where((x) => x is Map && x['text'] == 'foo'));
+
   List<CategoryModel> categories = List<CategoryModel>.empty(growable: true);
   CategoryModel categoryModel = CategoryModel();
 

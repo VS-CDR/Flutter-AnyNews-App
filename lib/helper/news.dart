@@ -8,7 +8,7 @@ class News {
 
   String url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=01225cf14dda47239c7192a2c3d7c423";
 
-  Future<void> getNews() async{
+  Future<void> getNews() async {
     var response = await http.get(Uri.parse(url));
 
     var jsonData = jsonDecode(response.body);
