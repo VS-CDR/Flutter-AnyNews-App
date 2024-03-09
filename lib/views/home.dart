@@ -2,6 +2,7 @@ import 'package:any_news/helper/data.dart';
 
 import 'package:any_news/models/category_model.dart';
 import 'package:any_news/views/article_view.dart';
+import 'package:any_news/views/category_news.dart';
 import '../helper/news.dart';
 import '../models/article_model.dart';
 
@@ -97,40 +98,41 @@ class CategoryTile extends StatelessWidget {
   const CategoryTile({super.key, this.imgUrl, this.categoryName});
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-
-      },
-      child: Container(
-        margin: const EdgeInsets.only(right: 16),
-        child: Stack(
-          children: <Widget>[
-            ClipRRect(
+  Widget build(BuildContext context) => GestureDetector(
+    onTap: (){
+      Navigator.push(context, MaterialPageRoute(
+          builder: (context) => CategoryNews(category: categoryName!.toLowerCase())
+      )
+      );
+    },
+    child: Container(
+      margin: const EdgeInsets.only(right: 16),
+      child: Stack(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(imgUrl!, width: 116, height: 64, fit: BoxFit.cover,),
+          ),
+          Container(
+            alignment: Alignment.center,
+            width: 116, height: 64,
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-                child: Image.asset(imgUrl!, width: 116, height: 64, fit: BoxFit.cover,),
+              color: Colors.black26,
             ),
-            Container(
-              alignment: Alignment.center,
-              width: 116, height: 64,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.black26,
+            child: Text(categoryName!,
+              style:
+              const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
               ),
-              child: Text(categoryName!,
-                style:
-                  const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-              ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
-    );
-  }
+    ),
+  );
 }
 
 class BlogTile extends StatelessWidget {

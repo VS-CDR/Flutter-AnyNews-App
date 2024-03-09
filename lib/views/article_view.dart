@@ -41,27 +41,25 @@ class _ArticleViewState extends State<ArticleView> {
   }
 
   @override
-  Widget build (BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          children: <Widget>[
-            Text("Any"),
-            Text("News", style: TextStyle(color: Colors.greenAccent),)
-          ],
-        ),
-      ),
-      body: Stack(
-        children: [
-          WebViewWidget(
-            controller: controller,
-          ),
-          if (loadingPercentage < 100)
-            LinearProgressIndicator(
-              value: loadingPercentage / 100.0,
-            ),
+  Widget build (BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: const Row(
+        children: <Widget>[
+          Text("Any"),
+          Text("News", style: TextStyle(color: Colors.greenAccent),)
         ],
       ),
-    );
-  }
+    ),
+    body: Stack(
+      children: [
+        WebViewWidget(
+          controller: controller,
+        ),
+        if (loadingPercentage < 100)
+          LinearProgressIndicator(
+            value: loadingPercentage / 100.0,
+          ),
+      ],
+    ),
+  );
 }
