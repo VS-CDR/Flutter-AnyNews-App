@@ -15,7 +15,7 @@ class CategoryNews extends StatefulWidget {
 }
 
 class _CategoryNewsState extends State<CategoryNews> {
-  List<ArticleModel> articles = List<ArticleModel>.empty(growable: true);
+  late final List<ArticleModel> articles;
   bool _loading = true;
   
   @override
