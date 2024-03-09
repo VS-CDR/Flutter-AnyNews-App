@@ -163,16 +163,12 @@ class BlogTile extends StatelessWidget {
               title!,
               style: const TextStyle(
                 fontSize: 18,
-                color: Colors.black87,
                 fontWeight: FontWeight.w500,
               ),
             ),
             const SizedBox(height: 8,),
             Text(
               desc!,
-              style: const TextStyle(
-                  color: Colors.black54
-              ),
             ),
           ],
         ),
