@@ -20,7 +20,6 @@ class _CategoryNewsState extends State<CategoryNews> {
   
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getCatNews();
   }
