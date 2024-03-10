@@ -1,16 +1,32 @@
 # any_news
 
-A new Flutter HW.
+Простое приложение-новостной агрегатор.
 
-## Getting Started
+## Описание
 
-This project is a starting point for a Flutter application.
+AnyNews - приложение для просмотра новостей, работающее на NewsAPI.
 
-A few resources to get you started if this is your first Flutter project:
+## Интерфейс
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Новостная лента
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Новости представлены в удобном формате листаемой ленты.
+
+
+### Тёмная тема
+
+Смотри новости в любое время и при любом освещении блягодаря тёмной теме.
+
+
+
+## Функционал
+
+## Выбери то, что интересно тебе
+
+AnyNews содержит разделение на подтемы, позволяя не отвлекаться на остальные новости.
+
+## Узнай о новости подробнее в первоисточнике
+
+Каждая новость содержит в себе ссылку на первоисточник.
+
+
