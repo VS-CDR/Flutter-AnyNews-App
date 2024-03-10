@@ -12,13 +12,13 @@ AnyNews - приложение для просмотра новостей, ра�
 
 Новости представлены в удобном формате листаемой ленты.
 
-<p align="center"><img src="https://github.com/VS-CDR/Flutter-AnyNews-App/blob/main/screenshots/Main.png?raw=true" alt="Reflectly hero image"></p>
+<p align="center"><img src="https://github.com/VS-CDR/Flutter-AnyNews-App/blob/main/screenshots/Main.png?raw=true" alt="Main View"></p>
 
 ### Тёмная тема
 
 Смотри новости в любое время и при любом освещении блягодаря тёмной теме.
 
-
+<p align="center"><img src="https://github.com/VS-CDR/Flutter-AnyNews-App/blob/main/screenshots/dark_theme.png?raw=true" alt="App in DarkTheme"></p>
 
 ## Функционал
 
