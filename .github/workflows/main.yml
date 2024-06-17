@@ -1,0 +1,41 @@
+name: ci
+on: [push]
+jobs:
+  flutter-analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter analyze .
+      - run: dart format --set-exit-if-changed .
+
+  flutter-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter test
+
+  build-release:
+    needs: [flutter-test, flutter-analyze]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps: 
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter build apk --target=lib/main.dart --release
+      - uses: actions/upload-artifact@v4.3.3
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
